@@ -1,0 +1,13 @@
+repositories:
+  TD1-CLI-turtlesim:
+    type: git
+    url: https://github.com/laas-ros2-courses/TD1-CLI-turtlesim.git
+    version: main
+  TD2-code-turtlesim:
+    type: git
+    url: https://github.com/laas-ros2-courses/TD2-code-turtlesim.git
+    version: main
+  TP1-Tiago-overview:
+    type: git
+    url: https://github.com/laas-ros2-courses/TP1-Tiago-overview.git
+    version: main
