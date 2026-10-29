@@ -11,3 +11,15 @@ repositories:
     type: git
     url: https://github.com/laas-ros2-courses/TP1-Tiago-overview.git
     version: main
+  TP2-nav2:
+    type: git
+    url: https://github.com/laas-ros2-courses/TP2-nav2.git
+    version: main
+  TP3-ros2-control:
+    type: git
+    url: https://github.com/laas-ros2-courses/TP3-ros2-control.git
+    version: main
+  TP4-visual-servoing:
+    type: git
+    url: https://github.com/laas-ros2-courses/TP4-visual-servoing.git
+    version: main

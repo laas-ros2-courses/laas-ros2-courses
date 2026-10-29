@@ -10,6 +10,16 @@ Nix is a package manager that builds packages in isolation, from an exact, decla
 
 To install Nix (if you don't have it yet), see the [official installer](https://nixos.org/download/) — make sure flakes are enabled (`experimental-features = nix-command flakes` in `~/.config/nix/nix.conf` or `/etc/nix/nix.conf`).
 
+**(optional)** if you trust us, add our binary caches to avoid recompiling everything
+```bash
+echo 'extra-substituters = https://gepetto.cachix.org https://attic.iid.ciirc.cvut.cz/ros' | sudo tee -a /etc/nix/nix.conf
+
+echo 'extra-trusted-public-keys = gepetto.cachix.org-1:toswMl31VewC0jGkN6+gOelO2Yom0SOHzPwJMY2XiDY= ros:JR95vUYsShSqfA1VTYoFt1Nz6uXasm5QrcOsGry9f6Q=' | sudo tee -a /etc/nix/nix.conf
+
+# activate your new nix.conf
+sudo systemctl restart nix-daemon
+```
+
 Basic commands:
 
 ```bash
