@@ -27,6 +27,44 @@ nix develop   # enter the dev shell; exit with `exit` or Ctrl+D
 nix flake update   # re-resolve inputs to their latest versions and update flake.lock
 ```
 
+## direnv (recommended, for per-TD/TP network isolation)
+
+In a classroom, everyone is on the same network. Without precaution, ROS 2
+defaults to `ROS_DOMAIN_ID=0`, and DDS discovery (multicast) makes every
+machine see every other machine — `ros2 topic list`/`ros2 node list` would
+show your neighbours' nodes, and a teleop node could end up moving someone
+else's robot/turtle. Some TD/TP folders ship a `.envrc` that restricts DDS
+discovery to the local machine (`ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST`)
+and sets a non-default `ROS_DOMAIN_ID`, loaded automatically by
+[direnv](https://direnv.net/) when you `cd` into them.
+
+This only works if direnv itself is installed **outside** of any `nix
+develop` shell, with its hook active in your interactive shell from the
+start — install it once, globally, before working through the TDs/TPs:
+
+```bash
+nix profile install nixpkgs#direnv
+```
+
+then add the hook to your shell's rc file (pick the line matching your
+shell) and restart your terminal:
+
+```bash
+echo 'eval "$(direnv hook bash)"' >> ~/.bashrc   # bash
+echo 'eval "$(direnv hook zsh)"'  >> ~/.zshrc    # zsh
+```
+
+The first time you enter a TD/TP folder with a `.envrc`, direnv will ask
+you to approve it:
+
+```bash
+direnv allow
+```
+
+You still need to run `nix develop` yourself in each new terminal — the
+`.envrc` only sets a couple of lightweight environment variables, it does
+not load the (much heavier) ROS dev shell.
+
 ## Clone all course repos
 
 ```bash
